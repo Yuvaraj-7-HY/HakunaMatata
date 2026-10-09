@@ -44,9 +44,37 @@ Progress `g` goes 0 → 1 over `[onset, failure]`, shape `linear` or `exponentia
 That ordering is deliberate: a plot should show kurtosis, then RMS, then
 temperature departing from the healthy band, while load is normal.
 
+## Machine types (M2)
+Five illustrative types, aligned with `data/Machines_in_a_Manufacturing_Facility.pdf`:
+CNC spindle motor, air compressor, hydraulic pump, lathe drive, coolant pump.
+Each has its own base vibration/current, thermal rise, sensitivities, τ, speed
+levels and ambient. The reference notes that motors/pumps/compressors share a
+bearing-driven failure pattern and the CNC spindle is the most Mysuru-relevant.
+
+## Degradation modes (M2)
+Progress `g` goes 0 → 1 over `[onset, failure]`; each mode touches different signals:
+- `bearing_wear` — kurtosis early, RMS mid, temperature late.
+- `cooling_fault` — temperature up (relative to load-expected); vibration unchanged.
+- `drive_load_issue` — current up with added ripple; vibration modest.
+- `sudden_fault` — everything jumps within a few hours (a very short window; early warning is not possible here, shown honestly).
+
 ## Nuisance events
-Look like faults but are not. M1: `load_surge` (days 18–22). M2 adds heat waves,
-startup transients, sensor dropouts, and maintenance resets.
+Look like faults but are not: `load_surge`, `heat_wave`, `startup_transient`
+(daily kick after each 06:00/14:00/22:00 shift start), `sensor_dropout` (NaN
+segments), and `maintenance_reset` (component replaced → any active degradation
+is cancelled and the machine returns to baseline).
+
+## Datasets (M2)
+Built by `python -m analysis.sim.make_datasets` into `data/`:
+| File | Content |
+|---|---|
+| `fleet_demo.parquet` | 8 machines, 90 days (3 healthy, 2 slow drift, 1 near failure, 1 nuisance, 1 sudden) |
+| `eval_dev.parquet` | 40 machines, seeds 0–39 (30 failures + 10 healthy-with-nuisance) |
+| `eval_hidden.parquet` | 40 machines, seeds 1000–1039, noise ×1.2, degradation ranges shifted ~30% beyond dev |
+
+Each has a matching `events_<name>.parquet` (machine_id, mode, component,
+onset_ts, failure_ts, failed, cancelled_by_reset, nuisance_events). Ground truth
+is never read by the detector.
 
 ## Determinism
 `simulate(scenario)` seeds `numpy.random.default_rng(scenario.seed)`. Same
