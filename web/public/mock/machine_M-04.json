@@ -1,0 +1,94 @@
+{
+  "id": "M-04",
+  "name": "CNC spindle motor — bay B",
+  "type": "CNC spindle motor",
+  "regime": {
+    "load_pct": 72,
+    "speed_rpm": 1800,
+    "ambient_c": 31.0
+  },
+  "status": "act_now",
+  "health": 41,
+  "status_since": "2026-02-24T05:00:00",
+  "signals": [
+    {
+      "name": "vibration_rms",
+      "unit": "mm/s",
+      "value": 5.8,
+      "expected": 3.1,
+      "band_low": 2.6,
+      "band_high": 3.6,
+      "z": 3.4
+    },
+    {
+      "name": "vibration_kurtosis",
+      "unit": "",
+      "value": 4.9,
+      "expected": 3.0,
+      "band_low": 2.5,
+      "band_high": 3.5,
+      "z": 4.1
+    },
+    {
+      "name": "temperature_c",
+      "unit": "°C",
+      "value": 71.5,
+      "expected": 63.0,
+      "band_low": 60.0,
+      "band_high": 66.0,
+      "z": 2.7
+    },
+    {
+      "name": "current_a",
+      "unit": "A",
+      "value": 18.2,
+      "expected": 16.5,
+      "band_low": 15.5,
+      "band_high": 17.5,
+      "z": 1.1
+    }
+  ],
+  "why_flagged": {
+    "contributors": [
+      {
+        "signal": "vibration_kurtosis",
+        "z": 4.1,
+        "share": 0.42
+      },
+      {
+        "signal": "vibration_rms",
+        "z": 3.4,
+        "share": 0.35
+      },
+      {
+        "signal": "temperature_c",
+        "z": 2.7,
+        "share": 0.18
+      },
+      {
+        "signal": "current_a",
+        "z": 1.1,
+        "share": 0.05
+      }
+    ],
+    "drift_hours": 120.0,
+    "signals_agreeing": 3,
+    "signals_total": 4
+  },
+  "context": [
+    {
+      "ts": "2026-03-01T02:00:00",
+      "text": "Load rose 20% at 14:00; this explains part of the vibration increase."
+    },
+    {
+      "ts": "2026-02-28T12:00:00",
+      "text": "Ambient +4°C from a heat wave; temperature band adjusted for this."
+    }
+  ],
+  "suspected": {
+    "subsystem": "Rotating assembly (bearings)",
+    "basis": "vibration RMS and kurtosis drifted together",
+    "caveat": "Suspected, not a confirmed fault."
+  },
+  "suggested_action": "Schedule an inspection"
+}

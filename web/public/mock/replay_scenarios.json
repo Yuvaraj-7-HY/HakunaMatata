@@ -1,0 +1,20 @@
+[
+  {
+    "id": "sc-01",
+    "machine": "M-04",
+    "mode": "bearing_wear",
+    "summary": "Slow bearing wear; kurtosis then RMS then temperature."
+  },
+  {
+    "id": "sc-02",
+    "machine": "M-07",
+    "mode": "cooling_fault",
+    "summary": "Cooling degradation; temperature drifts above load-expected."
+  },
+  {
+    "id": "sc-03",
+    "machine": "M-08",
+    "mode": "sudden_fault",
+    "summary": "Sudden fault within hours; little to no early warning."
+  }
+]

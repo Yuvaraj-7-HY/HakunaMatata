@@ -1,0 +1,24 @@
+{
+  "answer": "M-04 was flagged because its health fell to 41, below the 50 act-now line, and stayed there for about 5 days. Vibration kurtosis (z 4.1) and vibration RMS (z 3.4) drifted together first, with temperature following (z 2.7). That pattern points to a suspected rotating-assembly issue, not a confirmed fault. Schedule an inspection.",
+  "tool_calls": [
+    {
+      "name": "get_machine_health",
+      "args": {
+        "machine_id": "M-04"
+      }
+    },
+    {
+      "name": "explain_flag",
+      "args": {
+        "machine_id": "M-04"
+      }
+    }
+  ],
+  "citations": [
+    {
+      "machine_id": "M-04",
+      "window": "last 7 days"
+    }
+  ],
+  "chart": null
+}

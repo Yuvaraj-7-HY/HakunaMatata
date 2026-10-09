@@ -1,0 +1,82 @@
+{
+  "n_failures": 31,
+  "methods": {
+    "naive": {
+      "median_lead_h": 11.5,
+      "fa_per_week": 2.9,
+      "missed": 9
+    },
+    "ewma": {
+      "median_lead_h": 34.0,
+      "fa_per_week": 1.1,
+      "missed": 5
+    },
+    "ours": {
+      "median_lead_h": 78.5,
+      "fa_per_week": 0.4,
+      "missed": 3
+    }
+  },
+  "lead_time_hist": {
+    "bins": [
+      0,
+      6,
+      12,
+      24,
+      48,
+      72,
+      120,
+      168
+    ],
+    "ours": [
+      1,
+      0,
+      2,
+      5,
+      8,
+      9,
+      6
+    ],
+    "naive": [
+      8,
+      7,
+      4,
+      3,
+      0,
+      0,
+      0
+    ]
+  },
+  "sweep": [
+    {
+      "threshold": 55,
+      "fa_per_week": 0.1,
+      "median_lead_h": 30.0
+    },
+    {
+      "threshold": 60,
+      "fa_per_week": 0.2,
+      "median_lead_h": 44.0
+    },
+    {
+      "threshold": 65,
+      "fa_per_week": 0.3,
+      "median_lead_h": 58.0
+    },
+    {
+      "threshold": 70,
+      "fa_per_week": 0.4,
+      "median_lead_h": 78.5
+    },
+    {
+      "threshold": 75,
+      "fa_per_week": 0.7,
+      "median_lead_h": 96.0
+    },
+    {
+      "threshold": 80,
+      "fa_per_week": 1.3,
+      "median_lead_h": 132.0
+    }
+  ]
+}
