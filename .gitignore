@@ -12,6 +12,7 @@ venv/
 /data/*.parquet
 /data/*.csv
 /data/*.json
+/data/*.png
 
 # Node / Next.js
 node_modules/
